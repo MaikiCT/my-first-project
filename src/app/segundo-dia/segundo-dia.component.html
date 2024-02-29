@@ -1,0 +1,115 @@
+<p>segundo-dia works!</p>
+<!-- <button
+    class="btn btn primaty"
+    (click)="clickButton('hola soy variable')"
+>
+    cambios
+</button>
+<button
+    class="btn btn-primary"
+    (click)="clickButton('success')"
+>
+    hola
+</button>
+<div>
+    <h3>boton ngClass</h3>
+    <button
+        class="btn"
+        [ngClass]="{'btn-success': variable === 'success'}"
+    >
+        success
+    </button>
+</div> -->
+<button class="btn btn-primary" (click)="clickButton('success')">hola</button>
+
+<div>
+    <h3>boton ngClass</h3>
+    <button class="btn" [ngClass]="{'btn-success': variable === 'success'}">
+        success
+    </button>
+
+</div>
+<div>
+    <h3>boton terneario</h3>
+<button [class]="variable === 'success' ? 'btn btn-success': 'btn btn-danger'">{{variable}}</button>
+</div>
+
+<div *ngIf="variable == 'hola soy variable nueva'">{{variable}}</div>
+
+
+
+
+<!-- <div *ngIf="variable === 'success'">{{variable}}</div> -->
+<!-- <div *ngIf="variable == 'hola'">carlos se la come</div>
+<div *ngIf="variable == 'hola soy variable'">{{variable}}</div> -->
+<!-- <hr>
+<ul *ngFor="let itemuser of user">
+
+    <li>{{itemuser.name}}</li>
+    
+    <li>{{itemuser.descrption}}</li>
+<hr>
+</ul> -->
+
+<!-- <table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Nombre</th>
+            <th scope="col">descrption</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let itemuser of user">
+            <td>{{itemuser.name}}</td>
+            <td>{{itemuser.description}}</td>
+        </tr>
+    </tbody>
+</table> -->
+
+<h1>INPUTS NO REACTIVOS</h1>
+<span>Nombre</span>
+<input
+    type="text"
+    class="form-control"
+    [(ngModel)]="name"
+> 
+<span>descripcion</span>
+<input
+    type="text"
+    class="form-control"
+    [(ngModel)]="description"
+> 
+<!--{{variable}} -->
+<div class =" card bg-dark text-white">
+   <h3>{{name}}</h3>
+   <div class="card-body">
+<small>{{description}}</small>
+   </div>
+</div>
+
+<button
+    class="btn btn-success"
+    (click)="submitForm()"
+>
+   Mostrar los valores en la consola
+</button>
+<hr>
+<h1>INPUTS REACTIVOS</h1>
+<form [formGroup]="formulariouser">
+    <span>Nombre</span>
+    <input
+        type="text"
+        formControlName="name"
+    >
+    <span>Descripcion</span>
+    <input
+        type="text"
+        formControlName="description"
+    >
+    <button
+        class=" btn btn-success"
+        (click)="submitForm()"
+    >
+       Guardar los datos
+</button>
+</form>
