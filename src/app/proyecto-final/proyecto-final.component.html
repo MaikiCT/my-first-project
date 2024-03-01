@@ -1,0 +1,120 @@
+<div class="card-header d-flex justify-content-between align-items-center">
+    <div>
+        <h3>proyecto final</h3>
+    </div>
+    <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal">Agregar</button>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Agregar Usuario</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="row g-3">
+                    <div class="col">
+                        <form [formGroup]="formularioEntrada" (ngSubmit)="guardarUsuario()">
+                            <div class="form-group">
+                                <label for="name">Titulo:</label>
+                                <input type="text" class="form-control" formControlName="name" id="name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="description">Descripción:</label>
+                                <input type="text" class="form-control" formControlName="description" id="description"
+                                    required>
+                            </div>
+                            <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">Agregar</button>
+                        </form>
+                    </div>
+                    <div class="col">
+                        <div class="my-google-map sticky-bottom">
+                            <google-map [options]="mapOptions" width="200px" height="120"
+                                (mapClick)="addMarker($event)">
+                                <map-marker [position]="posicion"></map-marker>
+                            </google-map>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<hr>
+
+<div class="row g-3">
+    <div class="col">
+        <div class="card text-bg-primary mb-3" style="max-width: 25rem;" *ngFor="let usuario of usuarios; let i=index">
+            <div class="card-header d-flex justify-content-between align-items-center">
+                <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modal2"
+                    (click)="enviarDatos(usuario,i)">editartexto</button>
+                <button type="button" class="btn btn-secondary" (click)="ver(usuario)">ver</button>
+                <button type="button" class="btn btn-danger" (click)="eliminarCard(usuario,i)">Eliminar</button>
+            </div>
+            <div class="card-body">
+                <h6 class="card-title">{{ usuario.name }}</h6>
+                <hr>
+                <p class="card-text">{{ usuario.description }}</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="col">
+        <div class="my-google-map sticky-bottom">
+            <google-map [options]="mapOptions" width="450px" height="350">
+                <map-marker *ngFor="let usuario of usuarios" [position]="usuario.posicion"></map-marker>
+            </google-map>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+<div class="modal fade" id="modal2" tabindex="-1" aria-labelledby="modal2Label" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="modal2Label">Agregar Usuario</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="row g-3">
+                    <div class="col">
+                        <form [formGroup]="formularioEntrada" (ngSubmit)="editarusu()">
+                            <div class="form-group">
+                                <label for="name">Titulo:</label>
+                                <input type="text" class="form-control" formControlName="name" id="name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="description">Descripción:</label>
+                                <input type="text" class="form-control" formControlName="description" id="description"
+                                    required>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Editame</button>
+                        </form>
+                    </div>
+                    <div class="col">
+                        <div class="my-google-map sticky-bottom">
+                            <google-map [options]="mapOptions" width="200px" height="120"
+                                (mapClick)="addMarker($event)">
+                                <map-marker [position]="posicion"></map-marker>
+                            </google-map>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+            </div>
+        </div>
+    </div>
+</div>
